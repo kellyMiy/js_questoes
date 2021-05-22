@@ -3,6 +3,10 @@ Bot de perguntas e respostas para auxiliar os alunos de pré-programação da Un
 
 ---
 
+Para rodar o bot basta executar o comando `npm run start` no diretório da aplicação
+
+---
+
 Criado por: _Kelly de Araujo Santos_  
 RA: _820275591_  
 Curso: _Análise e Desenvolvimento de Sistemas_  
