@@ -3,7 +3,7 @@ Bot de perguntas e respostas para auxiliar os alunos de pré-programação da Un
 
 ---
 
-Criado por: _Kelly de Araujo Santos_
-RA: _820275591_
-Curso: _Análise e Desenvolvimento de Sistemas_
+Criado por: _Kelly de Araujo Santos_  
+RA: _820275591_  
+Curso: _Análise e Desenvolvimento de Sistemas_  
 Turma: _Campus Mooca - Noite_
