@@ -5,20 +5,21 @@ const { PerguntasDAO } = require('./perguntas.dao')
 const bot = new Telegraf(process.env.TOKEN);
 const perguntasDAO = new PerguntasDAO()
 
-const startMessage = 'Olá meu nome é Sam Depe, seja bem vindo ';
+const startMessage = 'Olá eu sou o JS_Questões e quero te ajudar a aprender um pouco mais sobre JavaScript, seja bem vindo ';
 
 bot.use(Telegraf.log())
 
-bot.start( async ctx => {
-    const name = ctx.update.message.from 
+bot.start(async ctx => {
+    const name = ctx.update.message.from
     ctx.reply(startMessage + name.first_name);
 
     await ctx.reply('Selecione a opção desejada',
-        Markup.keyboard(['/perguntas', '/outro'])
-        .oneTime()
-        .resize()
+        Markup.keyboard(['/perguntas'])
+            .oneTime()
+            .resize()
     )
 });
+
 
 bot.command('perguntas', (ctx) => {
     const perguntas = perguntasDAO.consultarTodasAsPerguntas();
@@ -32,10 +33,18 @@ bot.command('perguntas', (ctx) => {
                 Markup.button.callback(pergunta.alternativas[2], getAcaoDeResposta(2, pergunta)),
                 Markup.button.callback(pergunta.alternativas[3], getAcaoDeResposta(3, pergunta))
             ], {
-                columns: 2
-            }
+            columns: 2
+        }
         )
     })
+})
+bot.hears(/.+/, (ctx) => {
+    return ctx.reply(
+        'Eu ainda não sei me comunicar direito, tenho apenas algumas funções no seu teclado',
+        Markup.keyboard(['/perguntas'])
+            .oneTime()
+            .resize()
+    )
 })
 
 function getAcaoDeResposta(indiceAtual, pergunta) {
@@ -50,7 +59,7 @@ function getAcaoDeResposta(indiceAtual, pergunta) {
 bot.action(/resposta-certa-\d+/, async (ctx, next) => {
     const idPergunta = parseInt(ctx.match.input.split('-')[2])
     const pergunta = perguntasDAO.consultarPerguntaPorId(idPergunta)
-    await ctx.editMessageText(pergunta.info, {parse_mode: 'HTML'})
+    await ctx.editMessageText(pergunta.info, { parse_mode: 'HTML' })
     await ctx.reply('🎉')
     return await ctx.reply('O que você deseja fazer?', {
         parse_mode: 'HTML',
@@ -59,8 +68,8 @@ bot.action(/resposta-certa-\d+/, async (ctx, next) => {
                 Markup.button.callback("Próxima pergunta", 'pergunta-' + (idPergunta + 1)),
                 Markup.button.callback("Encerrar", "encerrar")
             ], {
-                columns: 2
-            }
+            columns: 2
+        }
         )
     })
 })
@@ -73,10 +82,10 @@ bot.action('encerrar', ActionEncerrar)
 
 async function ActionEncerrar(ctx) {
     await ctx.deleteMessage(ctx.update.message_id)
-    return await ctx.reply('Obrigado por particiar, espero que você tenha gostado e aprendido.\nEu fui criado pela Miyuki, e meu código esta disponível em https://github.com/kellyMiy/chatbot_telegram.\nPara jogar novamente basta clicar no botão disponível no chat.',
+    return await ctx.reply('Obrigado por particiar, espero que você tenha gostado e aprendido.\nEu fui criado pela Miyuki, e meu código esta disponível em https://github.com/kellyMiy/js_questoes\nPara jogar novamente basta clicar no botão disponível no chat.',
         Markup.keyboard(['/perguntas'])
-        .oneTime()
-        .resize()
+            .oneTime()
+            .resize()
     )
 }
 
@@ -94,8 +103,8 @@ bot.action(/pergunta-\d+/, async (ctx) => {
                     Markup.button.callback(pergunta.alternativas[2], getAcaoDeResposta(2, pergunta)),
                     Markup.button.callback(pergunta.alternativas[3], getAcaoDeResposta(3, pergunta))
                 ], {
-                    columns: 2
-                }
+                columns: 2
+            }
             )
         })
     } else {
@@ -105,7 +114,7 @@ bot.action(/pergunta-\d+/, async (ctx) => {
 })
 
 bot.catch(error => {
-	console.log('telegraf error', error)
+    console.log('telegraf error', error)
 })
 
 bot.launch();
