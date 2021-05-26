@@ -10,7 +10,7 @@ Para rodar o bot basta executar o comando `npm run start` no diretório da aplic
 
 ---
 
-Criado por: _Kelly de Araujo Santos_  
-RA: _820275591_  
-Curso: _Análise e Desenvolvimento de Sistemas_  
-Turma: _Campus Mooca - Noite_
+Criado por: _Miyuki_  
+Link para acesso ao bot: t.me/js_questoes_bot  
+Link para video no youtube: https://youtu.be/mvWf3BjH7dk
+
