@@ -1,9 +1,10 @@
 # JS Questões
+
 Bot de perguntas e respostas para auxiliar os alunos de pré-programação da Universidade São Judas Tadeu
 
----
+![animação](./animacao.gif)
 
-![animação](./animacao.git)
+---
 
 Para rodar o bot basta executar o comando `npm run start` no diretório da aplicação
 
