@@ -3,6 +3,8 @@ Bot de perguntas e respostas para auxiliar os alunos de pré-programação da Un
 
 ---
 
+![animação](./animacao.git)
+
 Para rodar o bot basta executar o comando `npm run start` no diretório da aplicação
 
 ---
